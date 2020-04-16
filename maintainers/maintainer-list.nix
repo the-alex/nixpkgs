@@ -7341,6 +7341,12 @@
     githubId = 1141680;
     name = "Thane Gill";
   };
+  the-alex = {
+    email = "alexwritesprograms@gmail.com";
+    github = "the-alex";
+    githubId = 7095187;
+    name = "Alex Chojnacki";
+  };
   the-kenny = {
     email = "moritz@tarn-vedra.de";
     github = "the-kenny";
