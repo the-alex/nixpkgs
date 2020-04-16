@@ -5346,6 +5346,8 @@ in {
     gdal = pkgs.gdal_2; # gdal 3.0 not supported yet
   };
 
+  rasterstats = callPackage ../development/python-modules/rasterstats { };
+
   radicale_infcloud = callPackage ../development/python-modules/radicale_infcloud {};
 
   recaptcha_client = callPackage ../development/python-modules/recaptcha_client { };
