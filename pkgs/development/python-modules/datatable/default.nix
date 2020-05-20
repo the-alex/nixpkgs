@@ -30,6 +30,19 @@ buildPythonPackage rec {
     })
   ];
 
+  # https://github.com/h2oai/datatable/issues/2070
+  postPatch = ''
+  sed -i 's/import re/import re\nimport shutil/' ci/setup_utils.py
+  '';
+
+  # https://github.com/korayal/nixpkgs/commit/9580b8d199a94053ee6436d7dffc536dd1713ec3
+  postFixup = with self; lib.optionalString stdenv.isDarwin ''
+    install_name_tool \
+      -change "@rpath/libc++.1.0.dylib" \
+	      "${lib.getLib libcxx}/lib/libc++.1.dylib" \
+      "$out/lib/python3.6/site-packages/datatable/lib/_datatable.cpython-36m-darwin.so"
+  '';
+
   propagatedBuildInputs = [ typesentry blessed ];
   buildInputs = [ llvm ] ++ lib.optionals stdenv.isDarwin [ openmp ];
   checkInputs = [ docutils pytest ];

@@ -11,9 +11,11 @@
 , simplejson
 , pyshp
 , fetchFromGitHub
+, isPy27
+# , compat
 , stdenv
 }:
-
+with stdenv;
 buildPythonPackage rec {
   pname = "rasterstats";
   version = "0.14.0";
@@ -33,6 +35,7 @@ buildPythonPackage rec {
     simplejson
     cligj
     fiona
+  # ] ++ lib.optional isPy27 [ compat ];
   ];
 
   checkInputs = [
